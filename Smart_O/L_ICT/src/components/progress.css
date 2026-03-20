@@ -1,0 +1,736 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.pt-wrapper {
+  display: flex;
+  flex-direction: column;
+  width: 80vw;
+  height: 100vh;
+  background-image: url("../assets/space-bg.jpg");
+  background-size: cover;
+  background-position: center;
+  font-family: "Orbitron", system-ui, sans-serif;
+  color: #ffffff;
+  padding: 30px;
+  overflow: hidden;
+}
+
+/* Header */
+.pt-header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 15px;
+  flex-shrink: 0;
+  position: relative;
+}
+
+.pt-logo {
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  margin-bottom: 10px;
+  filter: drop-shadow(0 0 15px rgba(75, 108, 255, 0.8));
+  transition: all 0.3s ease;
+}
+
+.pt-logo:hover {
+  filter: drop-shadow(0 0 20px rgba(192, 72, 255, 0.9));
+  transform: scale(1.05);
+}
+
+.pt-title {
+  font-size: 2.2rem;
+  font-weight: 700;
+  color: white;
+  text-shadow: 0 0 15px rgba(75, 108, 255, 0.7);
+  letter-spacing: 0.1em;
+}
+
+/* Main Content Layout */
+.pt-main-content {
+  display: flex;
+  gap: 25px;
+  flex: 1;
+  min-height: 0;
+  overflow: auto;
+}
+/* Assuming this is added to your progress.css file */
+
+/* Wrapper for progress circle and total - aligns them horizontally */
+.progress-and-total {
+  display: flex;
+  align-items: center;  /* Vertically centers the circle and text */
+  gap: 40px;  /* Adds space between the circle and total text; adjust as needed */
+  justify-content: center;  /* Centers the whole row horizontally in the card; remove if you want left-align */
+}
+
+/* Optional: Ensure the progress-circle-container doesn't take full width */
+.progress-circle-container {
+  flex-shrink: 0;  /* Prevents the circle from shrinking */
+}
+
+/* Optional: Style the pt-total for better alignment */
+.pt-total {
+  font-size: 14px;  /* Adjust size if needed */
+  color: #eee;  /* Matches your theme */
+}
+
+.content-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 5px;
+}
+
+/* Left Section - Grades */
+.pt-left-section {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.pt-grades-container {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  height: 100%;
+}
+
+.pt-grade-card {
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(10px);
+  border-radius: 15px;
+  padding: 25px;
+  text-align: center;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  transition: all 0.3s ease;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.pt-grade-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.05), transparent);
+  transition: left 0.5s ease;
+}
+
+.pt-grade-card:hover::before {
+  left: 100%;
+}
+
+.pt-grade-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+  border-color: rgba(75, 108, 255, 0.3);
+}
+
+.pt-grade-card.active {
+  background: linear-gradient(135deg, rgba(75, 108, 255, 0.3), rgba(192, 72, 255, 0.3));
+  box-shadow: 0 0 25px rgba(75, 108, 255, 0.6);
+  border-left: 3px solid #4b6cff;
+}
+
+.pt-grade-card h2 {
+  font-size: 1.6rem;
+  font-weight: bold;
+  margin-top: 25px;
+  margin-bottom: 5px;
+  color: #fdfeff;
+  text-shadow: 0 0 8px rgba(75, 108, 255, 0.5);
+}
+
+/* Progress Circle */
+.progress-circle-container {
+  margin: 15px 0;
+}
+
+.progress-circle {
+  position: relative;
+  width: 100px;
+  height: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.circle-bg {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border: 6px solid rgba(255, 255, 255, 0.1);
+  border-radius: 50%;
+  box-shadow: inset 0 0 15px rgba(0, 0, 0, 0.1);
+}
+
+.circle-fill {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border: 6px solid transparent;
+  border-top: 6px solid #4b6cff;
+  border-right: 6px solid #c048ff;
+  border-radius: 50%;
+  animation: rotate 3s linear infinite;
+  filter: drop-shadow(0 0 8px rgba(102, 126, 234, 0.4));
+  transform: rotate(0deg);
+  transition: transform 0.3s ease;
+}
+
+.circle-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  font-weight: italic;
+  transform: translate(-50%, -50%);
+  font-size: 18px;
+  color: white;
+  font-weight: 700;
+  text-shadow: 0 0 10px rgba(75, 108, 255, 0.7);
+}
+
+.pt-total {
+  font-size: 1.3rem;
+  font-weight: bold;
+  color: #e3eeff;
+  margin-top: 1px;
+  padding: 8px 16px;
+  background: rgba(75, 108, 255, 0.2);
+  border: 1px solid rgba(75, 108, 255, 0.5);
+  border-radius: 8px;
+  text-shadow: 0 0 5px rgba(75, 108, 255, 0.5);
+}
+
+/* Right Section - Lesson List */
+.pt-right-section {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.pt-lesson-list {
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(10px);
+  border-radius: 15px;
+  padding: 25px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 0 25px rgba(75, 108, 255, 0.5);
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  overflow: auto;
+}
+
+.pt-lesson-title {
+  font-size: 1.8rem;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 20px;
+  color: rgba(255, 255, 255, 0.9);
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-shadow: 0 0 8px rgba(75, 108, 255, 0.5);
+}
+
+.pt-lesson-cols {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 25px;
+  flex: 1;
+}
+
+.pt-col {
+  display: flex;
+  flex-direction: column;
+}
+
+.pt-grade-header {
+  padding: 15px 20px;
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  color: white;
+  border: none;
+  border-radius: 10px;
+  font-size: 1.3rem;
+  font-weight: bold;
+  margin-bottom: 15px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 5px 15px rgba(102, 126, 234, 0.3);
+  text-align: center;
+  text-shadow: 0 0 5px rgba(75, 108, 255, 0.5);
+}
+
+.pt-grade-header:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(102, 126, 234, 0.4);
+}
+
+.pt-grade-header.active {
+  animation: pulse 2s infinite;
+}
+
+.pt-col ul {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  flex: 1;
+}
+
+.pt-col li {
+  padding: 14px 16px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.9);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  text-align: center;
+  text-decoration: none;
+}
+
+.pt-col li::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.05), transparent);
+  transition: left 0.4s ease;
+}
+
+.pt-col li:hover::before {
+  left: 100%;
+}
+
+.pt-col li:hover {
+  background: rgba(75, 108, 255, 0.1);
+  border-color: rgba(75, 108, 255, 0.3);
+  transform: translateX(3px);
+  color: #667eea;
+}
+
+.pt-col li a {
+  color: inherit;
+  text-decoration: none;
+  display: block;
+}
+
+/* Lesson Progress Info */
+.lesson-progress-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 5px;
+  font-size: 0.85rem;
+  font-weight: 500;
+}
+
+.progress-percent {
+  color: #4b6cff;
+  font-weight: bold;
+}
+
+.completion-status {
+  font-size: 0.8rem;
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-weight: 600;
+}
+
+.completion-status.completed {
+  background-color: rgba(76, 175, 80, 0.2);
+  color: #4caf50;
+  border: 1px solid rgba(76, 175, 80, 0.3);
+}
+
+.completion-status.in-progress {
+  background-color: rgba(255, 152, 0, 0.2);
+  color: #ff9800;
+  border: 1px solid rgba(255, 152, 0, 0.3);
+}
+
+/* Lesson Progress Bar */
+.lesson-progress-bar {
+  width: 100%;
+  height: 6px;
+  background-color: rgba(255, 255, 255, 0.2);
+  border-radius: 3px;
+  margin-top: 5px;
+  overflow: hidden;
+  display: flex;
+}
+
+.lesson-fill {
+  height: 100%;
+  
+  border-radius: 3px;
+  transition: width 0.3s ease;
+  box-shadow: 0 0 5px rgba(75, 108, 255, 0.5);
+}
+
+.quiz-fill {
+  height: 100%;
+
+  border-radius: 3px;
+  transition: width 0.3s ease;
+  box-shadow: 0 0 5px rgba(244, 67, 54, 0.5);
+}
+
+.lesson-fill.completed-fill{
+  background: linear-gradient(90deg, #4b6cff, #c048ff);
+  box-shadow: 0 0 5px rgba(76, 175, 80, 0.5);
+}
+
+.quiz-fill.completed-fill {
+  background: linear-gradient(90deg, #4caf50, #66bb6a);
+  box-shadow: 0 0 5px rgba(76, 175, 80, 0.5);
+}
+
+/* Animations */
+@keyframes rotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(102, 126, 234, 0.4);
+  }
+  70% {
+    box-shadow: 0 0 0 8px rgba(102, 126, 234, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(102, 126, 234, 0);
+  }
+}
+
+.pt-grade-card.active,
+.pt-grade-header.active {
+  animation: pulse 2s infinite;
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .pt-wrapper {
+    padding: 15px;
+  }
+  
+  .pt-title {
+    font-size: 2rem;
+  }
+  
+  .pt-main-content {
+    gap: 20px;
+  }
+  
+  .pt-grade-card {
+    padding: 20px;
+  }
+  
+  .progress-circle {
+    width: 90px;
+    height: 90px;
+  }
+  
+  .circle-text {
+    font-size: 1.1rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .pt-main-content {
+    flex-direction: column;
+    gap: 15px;
+  }
+  
+  .pt-title {
+    font-size: 1.8rem;
+  }
+  
+  .pt-grades-container {
+    flex-direction: row;
+    gap: 15px;
+  }
+  
+  .pt-grade-card {
+    padding: 15px;
+  }
+  
+  .pt-grade-card h2 {
+    font-size: 1.4rem;
+  }
+  
+  .progress-circle {
+    width: 80px;
+    height: 80px;
+  }
+  
+  .pt-total {
+    font-size: 1.1rem;
+  }
+  
+  .pt-lesson-list {
+    padding: 20px;
+  }
+  
+  .pt-lesson-title {
+    font-size: 1.6rem;
+  }
+  
+  .pt-lesson-cols {
+    gap: 20px;
+  }
+  
+  .pt-grade-header {
+    padding: 12px 16px;
+    font-size: 1.2rem;
+  }
+  
+  .pt-col li {
+    padding: 12px 14px;
+    font-size: 0.95rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .pt-wrapper {
+    padding: 10px;
+  }
+  
+  .pt-title {
+    font-size: 1.6rem;
+  }
+  
+  .pt-logo {
+    width: 60px;
+    height: 60px;
+  }
+  
+  .pt-grades-container {
+    flex-direction: column;
+  }
+  
+  .pt-lesson-cols {
+    grid-template-columns: 1fr;
+    gap: 15px;
+  }
+  
+  .progress-circle {
+    width: 70px;
+    height: 70px;
+  }
+  
+  .circle-bg,
+  .circle-fill {
+    border-width: 5px;
+  }
+  
+  .circle-text {
+    font-size: 1rem;
+  }
+  
+  .pt-lesson-title {
+    font-size: 1.4rem;
+  }
+  
+  .pt-col li {
+    padding: 10px 12px;
+    font-size: 0.9rem;
+  }
+}
+.menu-icon {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  width: 35px;
+  height: 28px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  cursor: pointer;
+  z-index: 999;
+}
+
+.menu-icon div {
+  height: 4px;
+  width: 100%;
+  background: linear-gradient(90deg, #9b59b6, #00e5ff);
+  border-radius: 5px;
+  box-shadow: 0 0 8px rgba(155, 89, 182, 0.8);
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.menu-icon:hover div:nth-child(1) {
+  transform: translateX(5px);
+}
+
+.menu-icon:hover div:nth-child(2) {
+  opacity: 0.6;
+}
+
+.menu-icon:hover div:nth-child(3) {
+  transform: translateX(-5px);
+}
+
+/* View Toggle */
+.view-toggle {
+  display: flex;
+  gap: 10px;
+  margin-left: auto;
+}
+
+.view-toggle button {
+  padding: 8px 16px;
+  background-color: rgba(255, 255, 255, 0.1);
+  border: 1px solid #eee;
+  color: #eee;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-family: 'Orbitron', sans-serif;
+}
+
+.view-toggle button.active {
+  background-color: #007bff;
+  border-color: #007bff;
+}
+
+.view-toggle button:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+/* Students Progress */
+.students-progress-container {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  max-height: 600px;
+  overflow-y: auto;
+  padding-right: 10px;
+}
+
+.student-progress-card {
+  background-color: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+  padding: 15px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.student-info h3 {
+  margin: 0 0 5px 0;
+  color: #eee;
+  font-size: 16px;
+}
+
+.student-info p {
+  margin: 0;
+  color: #ccc;
+  font-size: 14px;
+}
+
+.lesson-progress {
+  text-align: right;
+}
+
+.lesson-progress h4 {
+  margin: 0 0 5px 0;
+  color: #eee;
+  font-size: 14px;
+}
+
+.lesson-progress p {
+  margin: 2px 0;
+  color: #ccc;
+  font-size: 12px;
+}
+
+/* Back Button */
+.back-button {
+  background-color: rgba(75, 108, 255, 0.2);
+  border: 1px solid rgba(75, 108, 255, 0.5);
+  color: #eee;
+  padding: 8px 16px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-family: 'Orbitron', sans-serif;
+  font-size: 14px;
+  margin-bottom: 15px;
+  transition: all 0.3s ease;
+}
+
+.back-button:hover {
+  background-color: rgba(75, 108, 255, 0.4);
+  border-color: rgba(75, 108, 255, 0.7);
+}
+
+/* Clickable Student Cards */
+.student-progress-card.clickable {
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.student-progress-card.clickable:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+  border-color: rgba(75, 108, 255, 0.4);
+  transform: translateY(-2px);
+}
+
+/* Detailed Student Cards */
+.student-detailed-card {
+  background-color: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 12px;
+  padding: 20px;
+  margin-bottom: 15px;
+  transition: all 0.3s ease;
+}
+
+.student-detailed-card:hover {
+  background-color: rgba(255, 255, 255, 0.12);
+  border-color: rgba(75, 108, 255, 0.3);
+}
+
+.lesson-detail h4 {
+  margin: 0 0 10px 0;
+  color: #eee;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.lesson-info p {
+  margin: 5px 0;
+  color: #ccc;
+  font-size: 14px;
+}
+
+.lesson-info strong {
+  color: #eee;
+}

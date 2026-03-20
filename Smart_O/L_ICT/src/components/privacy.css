@@ -1,0 +1,80 @@
+.privacy-bg {
+/*height: 100vh;
+background: radial-gradient(circle at top, #1a2a6c, #0f0c29, #000);*/
+display: flex;
+align-items: center;
+justify-content: center;
+font-family: 'Orbitron', sans-serif;
+}
+
+
+.privacy-card {
+width: 980px;
+max-height: 600px;
+border-radius: 24px;
+background: linear-gradient(#670ff4, #2b0165);
+box-shadow: 0 20px 40px rgba(0,0,0,0.45);
+padding: 22px;
+display: flex;
+flex-direction: column;
+}
+
+
+.privacy-header {
+color: #fff;
+text-align: center;
+margin-bottom: 14px;
+position: relative;
+}
+
+
+.privacy-header h2 {
+position: absolute;
+top: 20px;
+right: 20px;
+margin: 0;
+font-size: 40px;
+}
+
+.privacy-header h3 {
+position: absolute;
+top: 80px;
+right: 25px;
+margin: 0;
+font-size: 15px;
+opacity: 0.85;
+}
+
+
+.privacy-content {
+background: rgba(255,255,255,0.15);
+border-radius: 16px;
+padding: 30px;
+height: 400px;
+font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+overflow-y: hidden;
+color: #fff;
+}
+
+
+.privacy-content section {
+margin-bottom: 14px;
+}
+
+
+.privacy-content h4 {
+margin: 0 0 4px;
+font-size: 14px;
+}
+
+
+.privacy-content p {
+margin: 0;
+font-size: 13px;
+opacity: 0.9;
+line-height: 1.5;
+}
+
+.back-btn {
+    margin-top: -50px;
+}

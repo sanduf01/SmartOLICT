@@ -1,0 +1,224 @@
+@import url("https://fonts.googleapis.com/css2?family=Orbitron&display=swap");
+
+body {
+  margin: 1;
+  font-family: "Orbitron", system-ui, sans-serif;
+  background: radial-gradient(circle at center, #2a1a62, #0e0023);
+  color: white;
+  overflow-x: hidden;
+}
+/* Logo container top-left */
+.logo-container {
+  position: absolute;
+  top: 100px;
+  left: 100px;
+  width: 100px;
+  height: 100px;
+  background: radial-gradient(circle at center, #2c1b62, #170934);
+  border-radius: 360px;
+  box-shadow: 0 0 10px #59389c;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: box-shadow 0.3s ease, transform 0.3s ease; /* Smooth transition for hover */
+  cursor: pointer; /* Indicates it's interactive */
+}
+/* Logo image, scale it smaller */
+.logo-container img {
+  max-width: 100px;
+  max-height: 100px;
+  border-radius: 50px;
+  transition: transform 0.3s ease; /* Smooth scaling on hover */
+}
+/* Hover effect: Sparkle with glow and animation */
+.logo-container:hover {
+  box-shadow: 0 0 20px #9b59b6, 0 0 40px #2980b9; /* Brighter, multi-layered glow for sparkle */
+  transform: scale(1.1); /* Slight zoom for emphasis */
+  animation: sparkle 1s ease-in-out infinite; /* Twinkling animation */
+}
+
+/* Main container */
+.container {
+  max-width: 1200px;
+  margin: 2rem auto;
+  padding: 0 2rem;
+  text-align: center;
+}
+
+/* Header section */
+.header-section {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5rem;
+  margin-bottom: 2rem;
+}
+
+.header-text {
+  font-family: "Orbitron", system-ui, sans-serif;
+  font-size: 2.5rem;
+  color: #c6c4ff;
+  letter-spacing: 0.05em;
+}
+
+/* Lessons Section */
+.lessons {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: nowrap;
+  gap: 2rem;
+  padding-bottom: 3rem;
+  padding-top: 3rem;
+  overflow-x: auto;
+  scrollbar-width: thin;
+  scrollbar-color: #663399 #252533;
+}
+
+.lessons::-webkit-scrollbar {
+  height: 8px;
+}
+
+.lessons::-webkit-scrollbar-track {
+  background: #252533;
+  border-radius: 4px;
+}
+
+.lessons::-webkit-scrollbar-thumb {
+  background: #663399;
+  border-radius: 4px;
+}
+
+.lessons::-webkit-scrollbar-thumb:hover {
+  background: #7c3eff;
+}
+
+/* Each lesson card */
+.lesson-card {
+  background: linear-gradient(180deg, #7a3b98, #225081);
+  border-radius: 20px;
+  width: 180px;
+  padding: 15px 15px 25px 15px;
+  box-shadow: 0 0 15px #663399;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: #fff;
+  font-weight: bold;
+  text-transform: uppercase;
+  flex-shrink: 0;
+  transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease; /* Smooth transitions for hover */
+  cursor: pointer; /* Indicates interactivity */
+}
+
+.lesson-card:hover {
+  transform: scale(1.05); /* Slight zoom on hover */
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3); /* Add shadow for depth */
+  background-color: rgba(255, 255, 255, 0.1); /* Subtle background tint */
+}
+
+.lesson-card img {
+  width: 130px;
+  height: 130px;
+  border-radius: 20px;
+  object-fit: cover;
+  margin-bottom: 1rem;
+  transition: transform 0.3s ease; /* Smooth image scaling */
+}
+
+.lesson-card:hover img {
+  transform: scale(1.0); /* Zoom the image slightly on hover */
+}
+
+.lesson-title {
+  font-family: "Orbitron", system-ui, sans-serif;
+  
+  font-style: italic;
+  margin-bottom: 0.8rem;
+}
+
+/* Start button */
+.start-button {
+  font-family: "Orbitron", sans-serif;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  background: linear-gradient(90deg, #8e44ad, #3498db);
+  border: none;
+  padding: 0.4rem 2rem;
+  border-radius: 25px;
+  color: #fff;
+  cursor: pointer;
+  text-transform: lowercase;
+  transition: background 0.3s ease, background-color 0.3s ease, color 0.3s ease; /* Smooth button transitions */
+}
+
+.lesson-card:hover .start-button {
+  background-color: #ff4444; /* Change button color on card hover */
+  color: white;
+}
+
+/* Lesson buttons container */
+.lesson-buttons {
+  display: flex;
+  flex-direction: column; /* stack buttons vertically */
+  gap: 0.5rem;
+  align-items: center;
+}
+
+/* Edit button */
+.edit-button {
+  font-family: "Orbitron", sans-serif;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  background: linear-gradient(90deg, #f39c12, #e74c3c);
+  border: none;
+  padding: 0.4rem 1.5rem;
+  border-radius: 25px;
+  color: #fff;
+  cursor: pointer;
+  text-transform: lowercase;
+  transition: background 0.3s ease, background-color 0.3s ease, color 0.3s ease;
+}
+
+.edit-button:hover {
+  background: linear-gradient(90deg, #e67e22, #c0392b);
+}
+.menu-icon {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  width: 35px;
+  height: 28px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  cursor: pointer;
+  z-index: 999;
+}
+
+.menu-icon div {
+  height: 4px;
+  width: 100%;
+  background: linear-gradient(90deg, #9b59b6, #00e5ff);
+  border-radius: 5px;
+  box-shadow: 0 0 8px rgba(155, 89, 182, 0.8);
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.menu-icon:hover div:nth-child(1) {
+  transform: translateX(5px);
+}
+
+.menu-icon:hover div:nth-child(2) {
+  opacity: 0.6;
+}
+
+.menu-icon:hover div:nth-child(3) {
+  transform: translateX(-5px);
+}
+
+/* Hide the white progress bar on the Grade 10 lessons page */
+.progress-bar-container,
+.progress-bar {
+  display: none !important;
+}
+

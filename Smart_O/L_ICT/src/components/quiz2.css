@@ -1,0 +1,169 @@
+/* quiz2.css (namespaced q2-*) - safe to include in components folder
+   This file scopes all styles under the .q2-root and uses q2- prefixes
+   to avoid leaking to other pages or global CSS.
+*/
+
+/* root container only affects descendants */
+.q2-root {
+  --q2-card-w: 650px;
+  --q2-accent: #8353ff;
+  --q2-glass: rgba(255,255,255,0.06);
+  font-family: "Poppins", "Segoe UI", sans-serif;
+  position: relative;
+  min-height: 520px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 38px;
+  /* background intentionally not applied to page-level to avoid interfering with other pages.
+     If you want the dark background to appear only inside this component, uncomment below:
+  */
+  /* background: linear-gradient(180deg, #0f0026 0%, #0a0120 60%, #05000f 100%); */
+}
+
+/* top area (timer & controls). It's absolutely positioned relative to page, but still within component */
+.q2-top {
+  position: absolute;
+  top: -90px;
+  right: -400px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  align-items: flex-end;
+  color: white;
+  z-index: 20;
+}
+
+/* timer */
+.q2-timer {
+  font-weight: 800;
+  color: #ff6b6b;
+  font-size: 20px;
+  padding: 6px 10px;
+  border-radius: 6px;
+  background: rgba(0,0,0,0.14);
+}
+.q2-timer.q2-urgent { animation: q2-shake 0.9s linear infinite; }
+@keyframes q2-shake {
+  0% { transform: translateX(0) }
+  25% { transform: translateX(-4px) }
+  50% { transform: translateX(4px) }
+  75% { transform: translateX(-2px) }
+  100% { transform: translateX(0) }
+}
+
+/* top controls */
+.q2-top-controls { display: flex; gap: 12px; align-items: center; }
+.q2-sound-toggle label { color: #ddd; font-size: 13px; display:inline-flex; align-items:center; gap:8px; }
+.q2-stats { font-size: 13px; color: #eee; text-align: right; line-height: 1.1; }
+
+/* main card */
+.q2-card {
+  width: var(--q2-card-w);
+  max-width: calc(100% - 40px);
+  background: var(--q2-glass);
+  padding: 36px;
+  border-radius: 20px;
+  text-align: center;
+  color: white;
+  box-shadow: 0 18px 60px rgba(0,0,0,0.6), inset 0 0 40px rgba(255,255,255,0.02);
+  backdrop-filter: blur(12px);
+  position: relative;
+}
+.q2-card:hover { transform: translateY(-4px); transition: transform 0.2s ease; }
+
+.q2-question { margin: 0 0 50px; font-size: 22px; font-weight: 700; }
+
+/* options grid */
+.q2-options { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-top: 8px; }
+.q2-option {
+  display: flex; align-items: center; gap:12px;
+  padding: 12px 14px; border-radius: 26px;
+  background: transparent; border: 2px solid rgba(131,83,255,0.9);
+  color: #fff; cursor: pointer; font-size: 15px;
+  transition: transform .14s ease, background .14s ease, box-shadow .14s ease;
+  justify-content: flex-start;
+}
+.q2-option:hover { transform: translateY(-4px); background: rgba(255,255,255,0.03); box-shadow: 0 8px 30px rgba(0,0,0,0.45); }
+.q2-opt-letter { min-width:36px; height:36px; border-radius:50%; background:rgba(0,0,0,0.18); display:flex; align-items:center; justify-content:center; font-weight:700; color:#fff; border:1px solid rgba(255,255,255,0.06); }
+
+/* correct / wrong states */
+.q2-option.q2-correct { background: linear-gradient(90deg,#bff6d6,#00e676); color:#002a12; border-color:#00c853; box-shadow: 0 12px 36px rgba(0,200,83,0.10); }
+.q2-option.q2-wrong { background: linear-gradient(90deg,#ffd6d6,#ff5252); color:#2b0000; border-color:#ff5252; box-shadow: 0 12px 36px rgba(255,82,82,0.10); }
+
+/* controls */
+.q2-controls-row, .q2-result-row { display:flex; align-items:center; justify-content:space-between; margin-top:20px; gap:12px; }
+.q2-hint { color: rgba(255,255,255,0.6); font-size:13px; }
+.q2-controls { display:flex; gap:10px; align-items:center; }
+
+.q2-btn { 
+  background: rgba(255,255,255,0.06); 
+  border:1px solid rgba(255,255,255,0.06); 
+  color:#fff; padding:10px 14px; 
+  border-radius:14px; 
+  cursor:pointer; 
+  font-weight:600; 
+}
+
+.q2-btn:hover { 
+  transform: translateY(-3px); 
+  background: rgba(255,255,255,0.09); 
+}
+.q2-btn.q2-primary { 
+  background: linear-gradient(180deg, #2db2ff, #9333ea); 
+  color:#000; 
+  border:none; 
+}
+.q2-btn.q2-ghost { 
+  background: transparent; 
+  border:1px dashed rgba(255,255,255,0.06); 
+}
+
+
+/* result text */
+.q2-result { font-weight:700; }
+.q2-correct-result { color:#a7f3c5; }
+.q2-wrong-result { color:#ffb4b4; }
+
+/* confetti (namespaced) */
+.q2-confetti-wrap { position: absolute; left:0; right:0; top:-10px; height:0; pointer-events:none; }
+.q2-confetti-piece { position:absolute; top:8px; opacity:0.95; border-radius:2px; transform-origin:center; animation: q2-conf-drop 1.2s cubic-bezier(.2,.8,.2,1) forwards; }
+@keyframes q2-conf-drop { 0% { transform: translateY(0) rotate(0deg) scale(1); opacity:1 } 60% { opacity:1 } 100% { transform: translateY(320px) rotate(360deg) scale(0.9); opacity:0 } }
+
+/* stop modal */
+.q2-stop-modal {
+  position: fixed; inset: 0; display:flex; align-items:center; justify-content:center;
+  background: radial-gradient(circle at center, #0a0a27, #1e0049 80%);
+  z-index: 200;
+}
+.q2-modal-card {
+  width: 480px; background: rgba(101, 76, 230, 0.04); padding:30px; border-radius:14px; color:rgb(237, 243, 240); text-align:center;
+  box-shadow: 0 0 20px #9b59b6, 0 0 40px #2980b9;
+  transform: scale(1.1);
+  animation: sparkle 1s ease-in-out infinite;
+   font-family: "Orbitron", system-ui, sans-serif;
+}
+@keyframes sparkle {
+            0%, 100% {
+              box-shadow: 0 0 20px #9b59b6, 0 0 40px #2980b9;
+            }
+            50% {
+              box-shadow: 0 0 30px #b16bff, 0 0 60px #3399ff;
+            }
+          }
+.q2-modal-stats { display:flex; gap:12px; justify-content:center; margin:14px 0; color:#e9ebdf; font-family: "Poppins", "Segoe UI", sans-serif;
+ }
+.q2-modal-stats div { font-size:16px; opacity:0.95; }
+
+.q2-modal-actions {
+  display: flex;
+  gap:15px;
+  justify-content: center;
+}
+
+/* responsive */
+@media (max-width:760px) {
+  .q2-options { grid-template-columns: 1fr; }
+  .q2-card { width: calc(100% - 40px); padding:22px; }
+  .q2-top { position: static; top:auto; right:auto; align-items:center; gap:8px; }
+}

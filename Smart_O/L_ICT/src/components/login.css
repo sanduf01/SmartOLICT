@@ -1,0 +1,303 @@
+/* Background and layout */
+.login-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  min-height: 100vh;
+  background-image: url("https://cdn.pixabay.com/photo/2016/11/19/14/00/space-1837306_1280.jpg");
+  background-size: cover;
+  background-position: center;
+  color: rgb(198, 188, 220);
+  font-family: "Orbitron", sans-serif;
+  padding: 0 50px;
+  box-sizing: border-box;
+}
+
+/* Left section */
+.login-left {
+  flex: 1;
+  text-align: center;
+  padding: 5rem 2rem;
+}
+
+.login-logo {
+  width: 150px;
+  margin-bottom: 10px;
+  transition: transform 0.3s ease, filter 0.3s ease;
+}
+
+.login-title {
+  font-size: 2rem;
+  margin-bottom: 30px;
+}
+
+/* Cosmic Button Styles */
+.cosmic-button {
+  position: relative;
+  background: linear-gradient(135deg, 
+    rgba(132, 122, 222, 0.1), 
+    rgba(125, 109, 246, 0.1), 
+    rgba(133, 124, 235, 0.05));
+  border: 2px solid transparent;
+  border-radius: 12px;
+  padding: 15px 40px;
+  font-size: 1.1rem;
+  margin: 15px 0;
+  cursor: pointer;
+  font-family: inherit;
+  color: #1c0ba1;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-weight: 600;
+  overflow: hidden;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  z-index: 1;
+  min-width: 280px;
+  box-shadow: 
+    0 0 20px rgba(45, 178, 255, 0.2),
+    inset 0 0 20px rgba(255, 255, 255, 0.1);
+  animation: float 3s ease-in-out infinite;
+}
+
+.cosmic-button:hover {
+  transform: translateY(-5px) scale(1.05);
+  box-shadow: 
+    0 0 40px rgba(45, 178, 255, 0.4),
+    0 10px 25px rgba(0, 0, 0, 0.3),
+    inset 0 0 30px rgba(255, 255, 255, 0.2);
+  border-color: rgba(45, 178, 255, 0.5);
+}
+
+.cosmic-button:active {
+  transform: translateY(-2px) scale(1.02);
+}
+
+/* Button text */
+.btn-text {
+  position: relative;
+  z-index: 2;
+  text-shadow: 0 0 10px rgba(45, 178, 255, 0.8);
+  background: linear-gradient(90deg, #2db2ff, #9333ea, #ffd700);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Animated stars effect */
+.btn-stars {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: 
+    radial-gradient(1px 1px at 20px 30px, rgba(255, 255, 255, 0.8), transparent),
+    radial-gradient(1px 1px at 40px 70px, rgba(255, 215, 0, 0.8), transparent),
+    radial-gradient(1px 1px at 60px 20px, rgba(45, 178, 255, 0.8), transparent),
+    radial-gradient(2px 2px at 90px 40px, rgba(147, 51, 234, 0.8), transparent);
+  background-repeat: repeat;
+  background-size: 100px 100px;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  animation: twinkle 4s linear infinite;
+  z-index: 1;
+  border-radius: 10px;
+}
+
+.cosmic-button:hover .btn-stars {
+  opacity: 0.6;
+  animation: twinkle 2s linear infinite;
+}
+
+/* Glow effect */
+.btn-glow {
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  background: linear-gradient(45deg, 
+    transparent 20%, 
+    rgba(45, 178, 255, 0.3) 40%, 
+    rgba(147, 51, 234, 0.3) 60%, 
+    transparent 80%);
+  border-radius: 14px;
+  filter: blur(10px);
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  z-index: 0;
+}
+
+.cosmic-button:hover .btn-glow {
+  opacity: 1;
+  animation: rotateGlow 3s linear infinite;
+}
+
+/* Animations */
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+@keyframes twinkle {
+  0%, 100% {
+    opacity: 0.3;
+  }
+  50% {
+    opacity: 0.8;
+  }
+}
+
+@keyframes rotateGlow {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes pulseBorder {
+  0%, 100% {
+    border-color: rgba(45, 178, 255, 0.3);
+  }
+  50% {
+    border-color: rgba(147, 51, 234, 0.6);
+  }
+}
+
+.cosmic-button {
+  animation: 
+    float 3s ease-in-out infinite,
+    pulseBorder 2s ease-in-out infinite;
+}
+
+.or-text {
+  margin: 15px 0;
+  font-size: 1.2rem;
+}
+
+/* Right section (appears on click) */
+.login-right {
+  flex: 1;
+  background: linear-gradient(180deg, #1d1579, #7f01f5);
+  border-radius: 30px;
+  padding: 3rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  max-width: 450px;
+  width: 100%;
+  box-shadow: 0px 0px 20px rgba(255, 255, 255, 0.2);
+
+  /* Smooth appearance */
+  animation: slideIn 0.45s ease forwards;
+}
+
+/* Animation */
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateX(-40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.input-box {
+  width: 90%;
+  padding: 12px;
+  margin: 10px 0;
+  border-radius: 5px;
+  border: none;
+  outline: none;
+}
+.select-box {
+  width: 60%;
+  padding: 12px;
+  margin: 12px 0;
+  border: none;
+  border-radius: 6px;
+  font-size: 1rem;
+  text-align: center;
+  outline: none;
+  color: #d7d4e0;
+  /*background-color: #1c0ba1;*/
+  background: linear-gradient(135deg, #582ee2, #9c66e4);
+}
+
+.select-box option {
+  background-color: black;
+  color: white;
+}
+
+.main-login-btn {
+  background: purple;
+  border: none;
+  color: rgb(255, 255, 255);
+  padding: 12px 60px;
+  font-size: 1.1rem;
+  margin-top: 20px;
+  border-radius: 25px;
+  cursor: pointer;
+  box-shadow: 0px 4px 0px #5b0080;
+  transition: transform 0.2s ease;
+}
+
+.main-login-btn:hover {
+  transform: scale(1.05);
+}
+
+.links {
+  margin-top: 30px;
+  display: flex;
+  gap: 40px;
+}
+
+.link {
+  color: rgb(255, 255, 255);
+  text-decoration: underline;
+  font-size: 1rem;
+}
+
+.link:hover {
+  color: #ffb3ff;
+}
+
+/* Error & success messages */
+.error-message {
+  color: #ffdddd;
+  margin-bottom: 10px;
+}
+
+.success-message {
+  color: #090750;
+  margin-bottom: 10px;
+}
+
+/* Types */
+.message.info {
+  color: #ffffff;
+}
+
+.message.success {
+  color: #ffffff;
+}
+
+.message.error {
+  color: #ffffff;
+}
+
+.or {
+  margin: 20px 0;
+  color: #2db2ff;
+  font-size: 1.1rem;
+  text-shadow: 0 0 10px rgba(45, 178, 255, 0.5);
+}

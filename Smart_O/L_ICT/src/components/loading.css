@@ -1,0 +1,163 @@
+/* Full-screen background */
+.loading-container {
+  width: 80vw;
+  height: 80vh;
+  background-image: url("../assets/space-bg.jpg"); /* put your galaxy bg here */
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: "Orbitron", system-ui, sans-serif; /* or any similar font */
+  color: #ffffff;
+}
+
+/* Semi-transparent dark overlay (like the inner rectangle in the screenshot) */
+.loading-overlay {
+  width: 80%;
+  max-width: 1000px;
+  height: 70%;
+  background: rgba(0, 0, 0, 0.4);
+  box-shadow: 0 0 30px rgba(0, 0, 0, 0.8);
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Oval logo */
+.loading-logo {
+  width: 220px;
+  max-width: 60%;
+  object-fit: contain;
+  margin-bottom: 60px;
+  border-radius: 50%;
+}
+
+/* Progress bar wrapper (for centering & spacing) */
+.progress-wrapper {
+  width: 70%;
+  max-width: 650px;
+  margin-bottom: 40px;
+}
+
+/* Outer track of progress bar */
+.progress-track {
+  width: 100%;
+  height: 14px;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 999px;
+  overflow: hidden;
+}
+
+/* Inner animated fill of progress bar */
+.loading-progress-fill {
+  width: 0%; /* starting filled portion – adjust as you like */
+  height: 100%;
+  background: linear-gradient(90deg, #ff0000, #ff7f00, #ffff00, #ff1493, #0000ff, #4b0082, #9400d3);
+  background-size: 400% 100%;
+  border-radius: 999px;
+  animation: loadingPulse 5s ease-in-out forwards, colorShift 5s ease-in-out forwards, glow 5s ease-in-out forwards, pulsate 2s ease-in-out infinite;
+  box-shadow: 0 0 10px rgba(255, 0, 0, 0.5);
+}
+
+/* Loading text at the bottom */
+.loading-text {
+  font-size: 32px;
+  letter-spacing: 0.18em;
+  text-transform: capitalize;
+}
+
+/* Simple “breathing” animation for the fill */
+@keyframes loadingPulse {
+  from {
+    width: 0%;
+  }
+  to {
+    width: 100%;
+  }
+}
+
+/* Color shifting animation for the fill */
+@keyframes colorShift {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 50% 50%;
+  }
+  100% {
+    background-position: 100% 50%;
+  }
+}
+
+/* Glow animation for the fill */
+@keyframes glow {
+  0% {
+    box-shadow: 0 0 10px rgba(255, 0, 0, 0.5);
+  }
+  10% {
+    box-shadow: 0 0 15px rgba(255, 127, 0, 0.7);
+  }
+  20% {
+    box-shadow: 0 0 20px rgba(255, 255, 0, 0.9);
+  }
+  30% {
+    box-shadow: 0 0 15px rgba(0, 255, 0, 0.7);
+  }
+  40% {
+    box-shadow: 0 0 20px rgba(0, 255, 255, 0.9);
+  }
+  50% {
+    box-shadow: 0 0 15px rgba(0, 0, 255, 0.7);
+  }
+  60% {
+    box-shadow: 0 0 20px rgba(255, 0, 255, 0.9);
+  }
+  70% {
+    box-shadow: 0 0 15px rgba(255, 20, 147, 0.7);
+  }
+  80% {
+    box-shadow: 0 0 20px rgba(75, 0, 130, 0.9);
+  }
+  90% {
+    box-shadow: 0 0 15px rgba(148, 0, 211, 0.7);
+  }
+  100% {
+    box-shadow: 0 0 10px rgba(255, 0, 0, 0.5);
+  }
+}
+
+/* Pulsating animation for scaling and opacity */
+@keyframes pulsate {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.05);
+    opacity: 0.8;
+  }
+}
+
+/* Basic responsiveness */
+@media (max-width: 768px) {
+  .loading-overlay {
+    width: 90%;
+    height: 70%;
+  }
+
+  .loading-logo {
+    width: 260px;
+    margin-bottom: 40px;
+  }
+
+  .progress-wrapper {
+    width: 80%;
+  }
+
+  .loading-text {
+    font-size: 24px;
+  }
+}
