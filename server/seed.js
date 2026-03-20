@@ -5,7 +5,7 @@ const Question = require('./models/question');
 
 require('dotenv').config();
 
-mongoose.connect("mongodb+srv://admin01:admin1234@cluster0.ixli32v.mongodb.net/KVJP1")
+mongoose.connect("mongodb+srv:")
   .then(() => console.log('Connected to MongoDB'))
   .catch(err => console.error('Connection error:', err));
 

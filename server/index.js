@@ -15,7 +15,7 @@ const Leaderboard = require("./models/Leaderboard");
 const InstantMessage = require("./models/InstantMessage");
 const ContentLog = require("./models/contentLog");
 
-mongoose.connect("mongodb+srv://admin01:admin1234@cluster0.ixli32v.mongodb.net/KVJP1");
+mongoose.connect("mongodb+srv:");
 
 async function run() {
   try {

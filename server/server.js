@@ -66,7 +66,7 @@ app.use("/api/notifications", notificationRoutes);
 
 /* -------------------- MONGODB CONNECTION -------------------- */
 mongoose
-  .connect("mongodb+srv://admin01:admin1234@cluster0.ixli32v.mongodb.net/KVJP1")
+  .connect("mongodb+srv:")
   .then(() => console.log("MongoDB Connected Successfully"))
   .catch(err => {
     console.log("MongoDB Connection Error:", err.message);
